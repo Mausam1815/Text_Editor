@@ -161,6 +161,7 @@ public class TextEditor implements ActionListener {
                     }
 //                    set output to text area
                     textArea.setText(output.toString());
+                    bufferedWriter.close();
                 } catch (IOException fileNotFoundException) {
                     fileNotFoundException.printStackTrace();
                 }
