@@ -5,9 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import com.ozten.font.JFontChooser;
+import java.net.URI;
 
 public class TextEditor implements ActionListener {
-//    declaring properties of the text editor
+    //    declaring properties of the text editor
     JFrame frame;
     JMenuBar menuBar;
     JMenu file, edit, view, themes, help;
@@ -15,7 +16,7 @@ public class TextEditor implements ActionListener {
     JMenuItem newFile, openFile, saveFile, closeFile, cut, copy, paste, selectAll, font, darkTheme, lightTheme, helpDoc, watchTutorial;
     JPanel panel;
 
-//    constructor
+    //    constructor
     public TextEditor() {
 //        initiation of frame
         frame = new JFrame("Text Editor");
@@ -161,7 +162,7 @@ public class TextEditor implements ActionListener {
                     }
 //                    set output to text area
                     textArea.setText(output.toString());
-                    bufferedWriter.close();
+                    bufferedReader.close();
                 } catch (IOException fileNotFoundException) {
                     fileNotFoundException.printStackTrace();
                 }
@@ -243,24 +244,24 @@ public class TextEditor implements ActionListener {
 
 //        help functionalities
 //        help doc function
-       if(actionEvent.getSource() == helpDoc) {
-           try {
-               String url = "https://github.com/Mausam1815/Text_Editor/blob/main/HelpDoc.md";
-               Desktop.getDesktop().browse(URI.create(url));
-           }catch (Exception a){
-               a.printStackTrace();
-           }
-       }
+        if(actionEvent.getSource() == helpDoc) {
+            try {
+                String url = "https://github.com/Mausam1815/Text_Editor/blob/main/HelpDoc.md";
+                Desktop.getDesktop().browse(URI.create(url));
+            }catch (Exception a){
+                a.printStackTrace();
+            }
+        }
 
 //        watch tutorial function
-          if(actionEvent.getSource() == watchTutorial) {
-              try {
-               String url = "https://vimeo.com/863473450?share=copy";
-               Desktop.getDesktop().browse(URI.create(url));
-           }catch (Exception a){
-               a.printStackTrace();
-           }
-       }
+        if(actionEvent.getSource() == watchTutorial) {
+            try {
+                String url = "https://vimeo.com/863473450?share=copy";
+                Desktop.getDesktop().browse(URI.create(url));
+            }catch (Exception a){
+                a.printStackTrace();
+            }
+        }
     }
 
     public static void main(String[] args) {
