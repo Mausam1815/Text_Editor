@@ -1,5 +1,3 @@
-# Text_Editor
-
 # Text Editor Project
 
 ## Overview
