@@ -1,14 +1,15 @@
+import com.ozten.font.JFontChooser;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import com.ozten.font.JFontChooser;
 import java.net.URI;
 
 public class TextEditor implements ActionListener {
-    //    declaring properties of the text editor
+    //    DECLARING PROPERTIES OF TEXT EDITOR.
     JFrame frame;
     JMenuBar menuBar;
     JMenu file, edit, view, themes, help;
@@ -16,151 +17,150 @@ public class TextEditor implements ActionListener {
     JMenuItem newFile, openFile, saveFile, closeFile, cut, copy, paste, selectAll, font, darkTheme, lightTheme, helpDoc, watchTutorial;
     JPanel panel;
 
-    //    constructor
+    //    CONSTRUCTOR.
     public TextEditor() {
-//        initiation of frame
+//        INITIATION OF FRAME
         frame = new JFrame("Text Editor");
-//        frame.setSize(800, 600);
         frame.setBounds(500,250,400,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
-//        initiation of menu bar
+//        INITIATION OF MENU-BAR.
         menuBar = new JMenuBar();
 
-//        initiation of menus
+//        INITIATION OF MENUS IN MENU-BAR -> (file, edit, view, themes, help).
         file = new JMenu("File");
         edit = new JMenu("Edit");
         view = new JMenu("View");
         themes = new JMenu("Themes");
         help = new JMenu("Help");
 
-//        add menus to the menu bar
+//        ADD MENUS TO THE MENU-BAR.
         menuBar.add(file);
         menuBar.add(edit);
         menuBar.add(view);
         menuBar.add(themes);
         menuBar.add(help);
 
-//        initiation of sub-menus of file menu
+//        INITIATION OF MENU-ITEMS OF file MENU.
         newFile = new JMenuItem("New");
         openFile = new JMenuItem("Open");
         saveFile = new JMenuItem("Save");
         closeFile = new JMenuItem("Close");
-//        add menu items to action listener
+//        ADD MENU-ITEMS TO ActionListener.
         newFile.addActionListener(this);
         openFile.addActionListener(this);
         saveFile.addActionListener(this);
         closeFile.addActionListener(this);
 
-//        add these sub-menus to file menu
+//        ADD MENU-ITEMS TO file MENU.
         file.add(newFile);
         file.add(openFile);
         file.add(saveFile);
         file.add(closeFile);
 
-//        initiation of sub-menus of edit menu
+//        INITIATION OF MENU-ITEMS OF edit MENU.
         cut = new JMenuItem("Cut");
         copy = new JMenuItem("Copy");
         paste = new JMenuItem("Paste");
         selectAll = new JMenuItem("Select all");
-//        add menu item to action listener
+//        ADD MENU-ITEMS TO ActionListener.
         cut.addActionListener(this);
         copy.addActionListener(this);
         paste.addActionListener(this);
         selectAll.addActionListener(this);
-//        add these sub-menus to edit menu
+//        ADD MENU-ITEMS TO edit MENU.
         edit.add(cut);
         edit.add(copy);
         edit.add(paste);
         edit.add(selectAll);
 
-//        initiation of sub-menus of view menu
+//        INITIATION OF MENU-ITEMS OF view MENU.
         font = new JMenuItem("Change Font and size");
-//        add menu item to action listener
+//        ADD MENU-ITEMS TO ActionListener.
         font.addActionListener(this);
-//        add these sub-menus to view menu
+//        ADD MENU0ITEMS TO view MENU.
         view.add(font);
 
-//        initiation of sub-menus of themes menu
+//        INITIATION OF MENU-ITEMS OF themes MENU.
         darkTheme = new JMenuItem("Dark theme");
         lightTheme = new JMenuItem("Light theme");
-//        add menu item to action listener
+//        ADD MENU-ITEMS TO ActionListener.
         darkTheme.addActionListener(this);
         lightTheme.addActionListener(this);
-//        add these sub-menus to themes menu
+//        ADD MENU-ITEMS TO themes MENU.
         themes.add(darkTheme);
         themes.add(lightTheme);
 
-//        initiation of sub-menus of help menu
+//        INITIATION OF MENU-ITEMS OF help MENU.
         helpDoc = new JMenuItem("Help Documentation");
         watchTutorial = new JMenuItem("Watch tutorial");
-//        add menu item to action listener
+//        ADD MENU-ITEMS TO Actionlistener.
         helpDoc.addActionListener(this);
         watchTutorial.addActionListener(this);
-//        add these sub-menus to help menu
+//        ADD MENU-ITEMS TO help MENU.
         help.add(helpDoc);
         help.add(watchTutorial);
 
-//        set menu bar for the frame
+//        SET MENU-BAR TO THE FRAME.
         frame.setJMenuBar(menuBar);
 
-//        initiation of text area
+//        INITIATION OF TEXT-AREA.
         textArea = new JTextArea();
 
-//        make frame visible
+//        SET FRAME VISIBLE TO TRUE.
         frame.setVisible(true);
 
-//        create content pane
+//        INITIATION OF PANEL.
         panel = new JPanel();
-//        set border
+//        SET BORDER FOR PANEL.
         panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-//        set layout
+//        SET LAYOUT FOR PANEL.
         panel.setLayout(new BorderLayout(0, 0));
-//        add text area to panel
+//        ADD TEXTAREA TO PANEL.
         panel.add(textArea, BorderLayout.CENTER);
 
-//        create scroll pane
+//        CREATE JScrollPane -> scrollPane.
         JScrollPane scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-//        add scroll pane to panel
+//        ADD SCROLL-PANE TO PANEL.
         panel.add(scrollPane);
 
-//        add panel to frame
+//        ADD PANEL TO FRAME.
         frame.add(panel);
 
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-//        file menu functionalities
-//        new file function
+//        CREATE file MENU FUNCTIONALITIES.
+//        SET NEW-FILE FUNCTION.
         if(actionEvent.getSource() == newFile) {
             new TextEditor();
         }
 
-//        open file function
+//        SET OPEN-FILE FUNCTION.
         if(actionEvent.getSource() == openFile) {
-//            performing open file operation
-//            initialize file chooser
+//            PERFORMING OPEN-FILE FUNCTION
+//            INITIALIZE FILE-CHOOSER.
             JFileChooser fileChooser = new JFileChooser("C:/Users/sigma/Desktop");
             int chooseOption = fileChooser.showOpenDialog(null);
-//            if open option is clicked
+//            CHECK IF OPEN BUTTON IS CLICKED.
             if(chooseOption == JFileChooser.APPROVE_OPTION) {
-//                get selected file
+//                GET SELECTED FILE.
                 File file = fileChooser.getSelectedFile();
-//                get path of selected file
+//                GET PATH OF SELECTED FILE.
                 String filePath = file.getPath();
                 try{
-//                    initialize file reader
+//                    INITIALIZE FILE-READER.
                     FileReader fileReader = new FileReader(filePath);
-//                    initialize buffered reader
+//                    INITIALIZE BUFFERED-READER.
                     BufferedReader bufferedReader = new BufferedReader(fileReader);
                     String intermediate;
                     StringBuilder output = new StringBuilder();
-//                    read contents of the file line by line
+//                    READ CONTENTS OF THE FILE LINE BY LINE.
                     while((intermediate = bufferedReader.readLine()) != null) {
                         output.append(intermediate).append("\n");
                     }
-//                    set output to text area
+//                    SET OUTPUT TO TEXT-AREA.
                     textArea.setText(output.toString());
                     bufferedReader.close();
                 } catch (IOException fileNotFoundException) {
@@ -169,21 +169,21 @@ public class TextEditor implements ActionListener {
             }
         }
 
-//        save file function
+//        SET SAVE-FILE FUNCTION.
         if(actionEvent.getSource() == saveFile) {
-//            initialize file chooser
+//            INITIALIZE FILE-CHOOSER.
             JFileChooser fileChooser = new JFileChooser("C:/Users/sigma/Desktop");
             int chooseOption = fileChooser.showSaveDialog(null);
-//            check if save option is clicked
+//            CHECK IF SAVE BUTTON IS CLICKED.
             if(chooseOption == JFileChooser.APPROVE_OPTION) {
-//                create a new file with chosen directory and file name
+//                CREATE A NEW FILE WITH CHOSEN DIRECTORY AND FILE NAME.
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath() + ".txt");
                 try{
-//                    initialize file writer
+//                    INITIALIZE FILE-WRITER.
                     FileWriter fileWriter = new FileWriter(file);
-//                    initialize buffered writer
+//                    INITIALIZE BUFFERED-WRITER.
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-//                    write contents to created file from text area
+//                    WRITE CONTENTS FROM TEXT-AREA TO NEW FILE.
                     textArea.write(bufferedWriter);
                     bufferedWriter.close();
                 } catch (IOException ioException) {
@@ -192,71 +192,70 @@ public class TextEditor implements ActionListener {
             }
         }
 
-//        close file function
+//        SET CLOSE-FILE FUNCTION.
         if(actionEvent.getSource() == closeFile) {
             System.exit(0);
         }
 
-//        edit menu functionalities
-//        cut function
+//        CREATE edit MENU FUNCTIONALITIES.
+//        SET CUT FUNCTION.
         if(actionEvent.getSource() == cut) {
-//            performing cut operation
             textArea.cut();
         }
-//        copy function
+//        SET COPY FUNCTION.
         if(actionEvent.getSource() == copy) {
-//            performing copy operation
             textArea.copy();
         }
-//        paste function
+//        SET PASTE FUNCTION.
         if(actionEvent.getSource() == paste) {
-//            performing paste operation
             textArea.paste();
         }
-//        select all function
+//        SET SELECT-ALL FUNCTION.
         if(actionEvent.getSource() == selectAll) {
-//            performing select all operation
             textArea.selectAll();
         }
 
-//        view menu functionalities
-//        change font function
+//        CREATE view MENU FUNCTIONALITIES.
+//        SET CHANGE FONT AND SIZE FUNCTION.
         if(actionEvent.getSource()== font) {
-
             Font selectedFont = JFontChooser.showDialog(frame, "Choose font", String.valueOf(textArea.getFont()));
             if(selectedFont != null) {
                 textArea.setFont(selectedFont);
             }
         }
 
-//        themes menu functionalities
-//        dark theme function
+//        CREATE themes MENU FUNCTIONALITIES.
+//        SET DARK-THEME FUNCTION.
         if(actionEvent.getSource() == darkTheme) {
             textArea.setBackground(Color.black);
             textArea.setForeground(Color.white);
         }
 
-//        light theme function
+//        SET LIGHT-THEME FUNCTION.
         if(actionEvent.getSource() == lightTheme) {
             textArea.setBackground(Color.white);
             textArea.setForeground(Color.black);
         }
 
-//        help functionalities
-//        help doc function
+//        CREATE help MENU FUNCTIONALITIES.
+//        SET HELP-DOC FUNCTION.
         if(actionEvent.getSource() == helpDoc) {
             try {
+//                CREATING URL
                 String url = "https://github.com/Mausam1815/Text_Editor/blob/main/HelpDoc.md";
+//                ACCESS URL WHEN USER CLICKS ON HELP-DOC.
                 Desktop.getDesktop().browse(URI.create(url));
             }catch (Exception a){
                 a.printStackTrace();
             }
         }
 
-//        watch tutorial function
+//        SET WATCH-TUTORIAL FUNCTION.
         if(actionEvent.getSource() == watchTutorial) {
             try {
+//                CREATING URL.
                 String url = "https://vimeo.com/863473450?share=copy";
+//                ACCESS THE URL WHEN USER CLICKS ON WATCH-TUTORIAL.
                 Desktop.getDesktop().browse(URI.create(url));
             }catch (Exception a){
                 a.printStackTrace();
@@ -265,6 +264,7 @@ public class TextEditor implements ActionListener {
     }
 
     public static void main(String[] args) {
+//        CREATING NEW TEXTEDITOR OBJECT TO RUN PROGRAM.
         new TextEditor();
     }
 }
