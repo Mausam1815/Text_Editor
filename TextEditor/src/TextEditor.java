@@ -95,7 +95,7 @@ public class TextEditor implements ActionListener {
 //        INITIATION OF MENU-ITEMS OF help MENU.
         helpDoc = new JMenuItem("Help Documentation");
         watchTutorial = new JMenuItem("Watch tutorial");
-//        ADD MENU-ITEMS TO Actionlistener.
+//        ADD MENU-ITEMS TO ActionListener.
         helpDoc.addActionListener(this);
         watchTutorial.addActionListener(this);
 //        ADD MENU-ITEMS TO help MENU.
